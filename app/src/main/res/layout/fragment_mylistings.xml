@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.theme.dashboard.mylistingsFragment">
+    tools:context=".ui.theme.dashboard.myListingsFragment">
 
     <TextView
-        android:id="@+id/tvFragmentTitle"
+        android:id="@+id/mylistingsFragmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

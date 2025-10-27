@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/my_listings_fragment">
+
+
+    <fragment
+        android:id="@+id/AddFragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.AddFragment"
+        android:label="Add E-Waste"
+        tools:layout="@layout/fragment_add" />
+
+    <fragment
+        android:id="@+id/my_listings_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.myListingsFragment"
+        android:label="My Listings"
+        tools:layout="@layout/fragment_mylistings" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/chat_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+
+</navigation>
+
+

@@ -5,25 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.e_wastehubkenya.databinding.FragmentMylistingsBinding
+import com.example.e_wastehubkenya.databinding.FragmentSettingsBinding
 
-class mylistingsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentMylistingsBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMylistingsBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // You can set text or load data here
-        binding.tvFragmentTitle.text = "My listings "
+        binding.settingsFragmentTitle.text = "App Settings "
     }
 
     override fun onDestroyView() {
@@ -31,3 +31,4 @@ class mylistingsFragment : Fragment() {
         _binding = null
     }
 }
+
