@@ -1,16 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.theme.dashboard.AddFragment">
 
-    <TextView
-        android:id="@+id/AddFragmentTitle"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-        android:text="Add Fragment" />
+        android:padding="24dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvStep1Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 1: Basic Info"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Product Name (e.g., HP Laptop)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStep1Title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvCategoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Category"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductName" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCategoryLabel" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBrand"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Brand (e.g., HP, Samsung)"
+            app:layout_constraintEnd_toStartOf="@id/guideline_v50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
+            android:layout_marginEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilModel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Model (e.g., Elitebook 840)"
+            app:layout_constraintStart_toEndOf="@id/guideline_v50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
+            android:layout_marginStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvConditionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Condition"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilBrand" />
+
+        <RadioGroup
+            android:id="@+id/rgCondition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvConditionLabel">
+
+            <RadioButton
+                android:id="@+id/rbWorking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Working"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/rbBroken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broken"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/rbScrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scrap"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf("parent"
+        app:layout_constraintTop_toBottomOf="@id/rgCondition" />
+
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_image_24"
+            android:background="@drawable/image_placeholder_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnUploadImage"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvStep2Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 2: Identification"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivProductImage" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSerial"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Serial Number / IMEI"
+            app:layout_constraintEnd_toStartOf="@id/btnCheckSerial"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStep2Title"
+            android:layout_marginEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSerial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnCheckSerial"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Check"
+            app:layout_constraintBottom_toBottomOf="@id/tilSerial"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tilSerial" />
+
+        <TextView
+            android:id="@+id/tvStep3Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 3: Sale Details"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilSerial" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Description (e.g., 'Cracked screen but boots up')"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStep3Title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:gravity="top"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchDonate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donate Item"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilDescription" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Asking Price (KSh)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/switchDonate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Location (e.g., Nairobi)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilPrice">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSubmitListing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Submit Listing"
+            android:padding="16dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilLocation" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/btnSubmitListing"
+            app:layout_constraintBottom_toBottomOf="@id/btnSubmitListing"
+            app:layout_constraintStart_toStartOf="@id/btnSubmitListing"
+            app:layout_constraintEnd_toEndOf="@id/btnSubmitListing"
+            android:elevation="8dp"
+            tools:visibility="visible"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_v50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

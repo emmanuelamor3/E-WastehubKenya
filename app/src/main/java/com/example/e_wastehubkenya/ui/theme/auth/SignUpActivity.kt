@@ -1,4 +1,4 @@
-package com.example.ewastehubkenya.ui.theme.auth
+package com.example.e_wastehubkenya.ui.theme.auth
 
 import android.os.Bundle
 import android.util.Patterns
@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.example.e_wastehubkenya.R
 import com.example.e_wastehubkenya.databinding.ActivitySignupBinding
 import com.example.e_wastehubkenya.data.Resource
 import com.example.e_wastehubkenya.viewmodel.AuthViewModel

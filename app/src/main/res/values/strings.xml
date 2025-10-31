@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">E-WastehubKenya</string>
+    <string name="full_name_hint">Full Name</string>
 </resources>
