@@ -26,7 +26,8 @@
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Full Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Phone"
-                android:inputType="phone" />
+                android:inputType="phone"
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +102,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -111,7 +116,8 @@
             android:text="Buyer/Seller"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+            app:layout_constraintTop_toBottomOf="@id/tilPassword"
+            tools:ignore="HardcodedText" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -138,7 +144,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="465dp" />
+            tools:layout_editor_absoluteY="465dp"
+            tools:ignore="HardcodedText,MissingConstraints" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -147,7 +154,8 @@
             android:visibility="gone"
             tools:layout_editor_absoluteX="162dp"
             tools:layout_editor_absoluteY="548dp"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

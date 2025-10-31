@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">E-WastehubKenya</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="step_1_basic_info">Step 1: Basic Info</string>
+    <string name="product_name_hint">Product Name (e.g., HP Laptop)</string>
+    <string name="category">Category</string>
+    <string name="brand_hint">Brand (e.g., HP, Samsung)</string>
+    <string name="model_hint">Model (e.g., Elitebook 840)</string>
+    <string name="condition">Condition</string>
+    <string name="working">Working</string>
+    <string name="broken">Broken</string>
+    <string name="scrap">Scrap</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="product_image_preview">Product image preview</string>
+    <string name="step_2_identification">Step 2: Identification</string>
+    <string name="serial_number_hint">Serial Number / IMEI</string>
+    <string name="check">Check</string>
+    <string name="step_3_sale_details">Step 3: Sale Details</string>
+    <string name="description_hint">Description (e.g., \'Cracked screen but boots up\')</string>
+    <string name="donate_item">Donate Item</string>
+    <string name="asking_price_hint">Asking Price (KSh)</string>
+    <string name="location_hint">Location (e.g., Nairobi)</string>
+    <string name="submit_e_waste">Submit E-Waste</string>
+    <string name="add_e_waste_title">Add E-Waste</string>
+    <string-array name="categories_array">
+        <item>Laptops</item>
+        <item>Phones</item>
+        <item>Televisions</item>
+        <item>Appliances</item>
+        <item>Other</item>
+    </string-array>
 </resources>

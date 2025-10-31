@@ -10,13 +10,13 @@ object RetrofitInstance {
         level = HttpLoggingInterceptor.Level.BODY
 
     }
-    private val HttpClient = OkHttpClient.Builder()
+    private val httpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
     private val retrofit by lazy{
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(HttpClient)
+            .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
