@@ -17,12 +17,11 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="76dp"
             android:fontFamily="sans-serif-black"
             android:text="Create Your Account"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#661F1F"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="44dp"
             android:fontFamily="sans-serif-medium"
             android:text="Buyer/Seller"
             android:textSize="18sp"
@@ -136,26 +135,28 @@
         <Button
             android:id="@+id/button"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:backgroundTint="#571212"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             android:text="Register"
-            android:textColor="#F4F4F4"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="465dp"
-            tools:ignore="HardcodedText,MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            tools:ignore="HardcodedText" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            tools:layout_editor_absoluteX="162dp"
-            tools:layout_editor_absoluteY="548dp"
-            tools:visibility="visible"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintVertical_bias="0.344"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
