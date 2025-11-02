@@ -17,24 +17,24 @@ import okhttp3.RequestBody
 
 
 interface ApiService {
-    @POST("/api/login")
+    @POST("/login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
-    @POST("/api/signup")
+    @POST("/signup")
     suspend fun signup(
         @Body signupRequest: SignupRequest
     ): Response<MessageResponse>
-    @POST("/api/forgot-password")
+    @POST("/forgot-password")
     suspend fun forgotPassword(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
-@GET("api/check-serial/{serial}")
+@GET("check-serial/{serial}")
 suspend fun checkSerial(
     @Path("serial") serial: String
 ): Response<MessageResponse>
 @Multipart
-@POST("/api/listings")
+@POST("/listings")
 suspend fun createListing(
     @Part("product_name") productName: RequestBody,
     @Part("category") category: RequestBody,
@@ -50,6 +50,3 @@ suspend fun createListing(
 
 
 }
-
-
-

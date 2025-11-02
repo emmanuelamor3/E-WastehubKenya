@@ -1,5 +1,6 @@
 package com.example.e_wastehubkenya.ui.theme.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.ArrayAdapter
@@ -120,6 +121,8 @@ class SignupActivity : AppCompatActivity() {
                     binding.button.isEnabled = true
 
                     Toast.makeText(this, "Signup Successful! Please login.", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
                     finish() // Close this activity and go back to Login
                 }
                 is Resource.Error -> {

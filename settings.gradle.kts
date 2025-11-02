@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "E-WastehubKenya"
 include(":app")
+include(":backend")
+include(":common")
