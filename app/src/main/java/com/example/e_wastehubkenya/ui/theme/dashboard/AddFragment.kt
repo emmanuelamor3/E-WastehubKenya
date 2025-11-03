@@ -1,3 +1,4 @@
+
 package com.example.e_wastehubkenya.ui.theme.dashboard
 
 import android.net.Uri
@@ -16,6 +17,7 @@ import com.example.e_wastehubkenya.R
 import com.example.e_wastehubkenya.data.Resource
 import com.example.e_wastehubkenya.databinding.FragmentAddBinding
 import com.example.e_wastehubkenya.viewmodel.ListingViewModel
+import com.example.e_wastehubkenya.viewmodel.ViewModelFactory
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -30,7 +32,7 @@ class AddFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
-    private val listingViewModel: ListingViewModel by viewModels()
+    private val listingViewModel: ListingViewModel by viewModels { ViewModelFactory(requireContext()) }
 
     private var selectedImageUri: Uri? = null
 
@@ -81,38 +83,12 @@ class AddFragment : Fragment() {
             imagePickerLauncher.launch("image/*")
         }
 
-        binding.btnCheckSerial.setOnClickListener {
-            val serial = binding.etSerial.text.toString().trim()
-            if (serial.isEmpty()) {
-                binding.tilSerial.error = "Serial number is required to check"
-            } else {
-                binding.tilSerial.error = null
-                listingViewModel.checkSerialNumber(serial)
-            }
-        }
-
         binding.btnSubmit.setOnClickListener {
             handleSubmitListing()
         }
     }
 
     private fun observeViewModel() {
-        listingViewModel.serialCheckResult.observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is Resource.Loading -> {
-                    Toast.makeText(context, "Checking serial...", Toast.LENGTH_SHORT).show()
-                }
-                is Resource.Success -> {
-                    Toast.makeText(context, "✅ Serial number is clear!", Toast.LENGTH_LONG).show()
-                    binding.tilSerial.error = null
-                }
-                is Resource.Error -> {
-                    Toast.makeText(context, "⚠️ ${resource.message}", Toast.LENGTH_LONG).show()
-                    binding.tilSerial.error = "This item may be flagged"
-                }
-            }
-        }
-
         listingViewModel.createListingResult.observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Loading -> {
@@ -137,7 +113,6 @@ class AddFragment : Fragment() {
         val brand = binding.etBrand.text.toString().trim()
         val model = binding.etModel.text.toString().trim()
         val condition = getSelectedCondition()
-        val serial = binding.etSerial.text.toString().trim()
         val description = binding.etDescription.text.toString().trim()
         val price = binding.etPrice.text.toString().trim()
         val location = binding.etLocation.text.toString().trim()
@@ -147,23 +122,20 @@ class AddFragment : Fragment() {
             return
         }
 
-        val productNameBody = productName.toRequestBody("text/plain".toMediaTypeOrNull())
-        val categoryBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
-        val brandBody = brand.toRequestBody("text/plain".toMediaTypeOrNull())
-        val modelBody = model.toRequestBody("text/plain".toMediaTypeOrNull())
-        val conditionBody = condition.toRequestBody("text/plain".toMediaTypeOrNull())
-        val serialBody = serial.toRequestBody("text/plain".toMediaTypeOrNull())
-        val descriptionBody = description.toRequestBody("text/plain".toMediaTypeOrNull())
-        val priceBody = price.toRequestBody("text/plain".toMediaTypeOrNull())
-        val locationBody = location.toRequestBody("text/plain".toMediaTypeOrNull())
+        val parts = mutableMapOf<String, RequestBody>()
+        parts["product_name"] = productName.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["category"] = category.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["brand"] = brand.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["model"] = model.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["condition"] = condition.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["description"] = description.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["price"] = price.toRequestBody("text/plain".toMediaTypeOrNull())
+        parts["location"] = location.toRequestBody("text/plain".toMediaTypeOrNull())
 
         val imagePart = selectedImageUri?.let { createImagePart(it) }
 
         if (imagePart != null) {
-            listingViewModel.submitListing(
-                productNameBody, categoryBody, brandBody, modelBody, conditionBody,
-                serialBody, descriptionBody, priceBody, locationBody, imagePart
-            )
+            listingViewModel.submitListing(parts, imagePart)
         } else {
             Toast.makeText(context, "Please upload an image", Toast.LENGTH_SHORT).show()
         }
@@ -202,7 +174,6 @@ class AddFragment : Fragment() {
         return when (binding.rgCondition.checkedRadioButtonId) {
             R.id.rbWorking -> "Working"
             R.id.rbBroken -> "Broken"
-            R.id.rbScrap -> "Scrap"
             else -> ""
         }
     }
@@ -238,7 +209,6 @@ class AddFragment : Fragment() {
         binding.etProductName.setText("")
         binding.etBrand.setText("")
         binding.etModel.setText("")
-        binding.etSerial.setText("")
         binding.etDescription.setText("")
         binding.etPrice.setText("")
         binding.etLocation.setText("")

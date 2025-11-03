@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        tools:context=".ui.fragments.AddFragment">
+        tools:context=".ui.theme.dashboard.AddFragment">
 
         <!-- Guideline for creating two columns -->
         <androidx.constraintlayout.widget.Guideline
@@ -37,7 +37,7 @@
             android:text="@string/step_1_basic_info"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_fragment_title" />
+            app:layout_constraintTop_toBottomOf="@id/add_fragment_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilProductName"
@@ -147,12 +147,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/broken"
                 android:layout_weight="1"/>
-            <RadioButton
-                android:id="@+id/rbScrap"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/scrap"
-                android:layout_weight="1"/>
         </RadioGroup>
 
         <Button
@@ -178,44 +172,6 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/tvStep2Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/step_2_identification"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivProductImage" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilSerial"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/serial_number_hint"
-            app:layout_constraintEnd_toStartOf="@id/btnCheckSerial"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvStep2Title"
-            android:layout_marginEnd="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSerial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnCheckSerial"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="@string/check"
-            app:layout_constraintBottom_toBottomOf="@id/tilSerial"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tilSerial" />
-
-        <TextView
             android:id="@+id/tvStep3Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -223,7 +179,7 @@
             android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilSerial" />
+            app:layout_constraintTop_toBottomOf="@id/ivProductImage" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDescription"
