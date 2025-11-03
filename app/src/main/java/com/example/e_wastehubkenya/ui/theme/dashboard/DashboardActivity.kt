@@ -2,6 +2,7 @@ package com.example.e_wastehubkenya.ui.theme.dashboard
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.e_wastehubkenya.R
@@ -16,15 +17,21 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Find the NavHostFragment
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val userRole = intent.getStringExtra("USER_ROLE")
 
-        // Get the NavController
+        // Find the NavHostFragment and get the NavController
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Connect the BottomNavigationView to the NavController
-        // This single line handles all the click listeners and fragment switching!
+        // Setup BottomNavigationView with the appropriate menu
+        if (userRole == "Seller") {
+            binding.bottomNavView.menu.clear()
+            binding.bottomNavView.inflateMenu(R.menu.bottom_nav_menu)
+        } else {
+            binding.bottomNavView.menu.clear()
+            binding.bottomNavView.inflateMenu(R.menu.buyer_bottom_nav_menu)
+        }
+
         binding.bottomNavView.setupWithNavController(navController)
     }
 }
