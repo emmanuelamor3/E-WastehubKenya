@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131521840465",
+    "project_id": "e-waste-hub-kenya",
+    "storage_bucket": "e-waste-hub-kenya.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131521840465:android:f142e4185cc7f6d8a7bf70",
+        "android_client_info": {
+          "package_name": "com.example.e_wastehubkenya"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzWnf-YvWEchmJoTuaCGdy4t86Rl9ccac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
