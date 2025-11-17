@@ -43,15 +43,74 @@ data class MessageResponse(val message: String)
 @Serializable
 data class SerialCheckRequest(val serialNumber: String)
 
+@Serializable
+data class MpesaCallback(
+    val Body: MpesaBody
+)
+
+@Serializable
+data class MpesaBody(
+    val stkCallback: StkCallback
+)
+
+@Serializable
+data class StkCallback(
+    val MerchantRequestID: String,
+    val CheckoutRequestID: String,
+    val ResultCode: Int,
+    val ResultDesc: String,
+    val CallbackMetadata: CallbackMetadata? = null
+)
+
+@Serializable
+data class CallbackMetadata(
+    val Item: List<CallbackItem>
+)
+
+@Serializable
+data class CallbackItem(
+    val Name: String,
+    val Value: Any? = null
+)
+
 // --- IN-MEMORY DATABASES ---
 // In a real app, you'd use a proper database (like PostgreSQL, MongoDB, etc.)
 
 val userDatabase = mutableMapOf<String, SignupRequest>()
 val listingsDatabase = mutableListOf<Listing>()
-val stolenSerialNumbers = setOf("SN123456", "SN654321", "SN987654") // Example flagged serial numbers
+// A valid Luhn number is added to the stolen list for testing.
+val stolenSerialNumbers = setOf("SN123456", "SN654321", "79927398713")
+
+/**
+ * Checks if the given number string is valid according to the Luhn algorithm.
+ * The Luhn algorithm is used to validate a variety of identification numbers,
+ * such as credit card numbers and IMEI numbers.
+ */
+fun isValidLuhn(number: String): Boolean {
+    // The number must be a digit-only string with a length greater than 0.
+    if (!number.matches(Regex("^\\d+$")) || number.length <= 0) {
+        return false
+    }
+
+    var sum = 0
+    var alternate = false
+    for (i in number.length - 1 downTo 0) {
+        var n = number.substring(i, i + 1).toInt()
+        if (alternate) {
+            n *= 2
+            if (n > 9) {
+                n = (n % 10) + 1
+            }
+        }
+        sum += n
+        alternate = !alternate
+    }
+    return (sum % 10 == 0)
+}
 
 fun main() {
-    embeddedServer(Netty, port = 3000, host = "0.0.0.0", module = Application::module)
+    // Changed port to 8080 to avoid conflicts
+    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
 }
 
@@ -89,7 +148,10 @@ fun Application.module() {
 
         post("/check-serial") {
             val request = call.receive<SerialCheckRequest>()
-            if (stolenSerialNumbers.contains(request.serialNumber)) {
+            val serialNumber = request.serialNumber
+
+            // A serial number is invalid if it's stolen OR fails the Luhn check.
+            if (stolenSerialNumbers.contains(serialNumber) || !isValidLuhn(serialNumber)) {
                 call.respond(MessageResponse("This item may be flagged as stolen or invalid."))
             } else {
                 call.respond(MessageResponse("Serial number appears to be valid."))
@@ -106,6 +168,19 @@ fun Application.module() {
             } catch (e: Exception) {
                 println("Error receiving listing: ${e.message}")
                 call.respond(MessageResponse("Failed to submit listing."))
+            }
+        }
+
+        // --- MPESA CALLBACK ---
+        post("/mpesa-callback") {
+            try {
+                val callback = call.receive<MpesaCallback>()
+                println("M-Pesa callback received: $callback")
+                // You can add further processing here, e.g., saving to a database
+                call.respond(MessageResponse("Callback received successfully."))
+            } catch (e: Exception) {
+                println("Error receiving M-Pesa callback: ${e.message}")
+                call.respond(MessageResponse("Failed to process callback."))
             }
         }
     }

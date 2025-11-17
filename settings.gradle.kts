@@ -1,8 +1,9 @@
 pluginManagement {
     repositories {
+        // This block is simplified to remove the restrictive content filter
         google()
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -15,5 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "E-WastehubKenya"
 include(":app")
-include(":backend")
-include(":common")
+// include(":common") // Module no longer needed after migration to Firebase

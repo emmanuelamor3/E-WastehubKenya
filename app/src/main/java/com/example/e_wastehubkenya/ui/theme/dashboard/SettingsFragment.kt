@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.e_wastehubkenya.databinding.FragmentSettingsBinding
+import com.example.e_wastehubkenya.ui.theme.ThemeManager
 
 class SettingsFragment : Fragment() {
 
@@ -22,8 +24,17 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // You can set text or load data here
-        binding.settingsFragmentTitle.text = "App Settings "
+
+        binding.switchDarkMode.isChecked = ThemeManager.isDarkTheme(requireContext())
+
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            val mode = if (isChecked) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                AppCompatDelegate.MODE_NIGHT_NO
+            }
+            ThemeManager.setTheme(requireContext(), mode)
+        }
     }
 
     override fun onDestroyView() {
@@ -31,4 +42,3 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 }
-

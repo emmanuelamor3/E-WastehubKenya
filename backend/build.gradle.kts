@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.serialization)
+
 }
 
 group = "com.example.e_wastehubkenya"
@@ -12,7 +13,6 @@ application {
 }
 
 dependencies {
-    implementation(project(":common"))
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.netty.jvm)
     implementation(libs.ktor.server.content.negotiation)

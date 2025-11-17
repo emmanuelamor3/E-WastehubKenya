@@ -1,23 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/my_listings_fragment">
 
-
     <fragment
         android:id="@+id/AddFragment"
         android:name="com.example.e_wastehubkenya.ui.theme.dashboard.AddFragment"
-        android:label="Add E-Waste"
-        tools:layout="@layout/fragment_add" />
+        android:label="Add E-Waste - Step 1 of 2"
+        tools:layout="@layout/fragment_add">
+        <action
+            android:id="@+id/action_AddFragment_to_addListingStep2Fragment"
+            app:destination="@id/addListingStep2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addListingStep2Fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.AddListingStep2Fragment"
+        android:label="Add E-Waste - Step 2 of 2"
+        tools:layout="@layout/fragment_add_step2" />
 
     <fragment
         android:id="@+id/my_listings_fragment"
         android:name="com.example.e_wastehubkenya.ui.theme.dashboard.myListingsFragment"
         android:label="My Listings"
-        tools:layout="@layout/fragment_mylistings" />
+        tools:layout="@layout/fragment_mylistings">
+        <action
+            android:id="@+id/action_myListingsFragment_to_listingDetailsFragment"
+            app:destination="@id/listingDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listingDetailsFragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.ListingDetailsFragment"
+        android:label="Listing Details"
+        tools:layout="@layout/fragment_listing_details">
+        <argument
+            android:name="listing"
+            app:argType="com.example.e_wastehubkenya.data.model.Listing" />
+        <action
+            android:id="@+id/action_listingDetailsFragment_to_chatFragment"
+            app:destination="@id/chat_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/my_sales_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.MySalesFragment"
+        android:label="My Sales"
+        tools:layout="@layout/fragment_my_sales" />
 
     <fragment
         android:id="@+id/profile_fragment"
@@ -32,11 +63,53 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
+        android:id="@+id/chat_list_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.ChatListFragment"
+        android:label="Chats"
+        tools:layout="@layout/fragment_chat_list">
+        <action
+            android:id="@+id/action_chatListFragment_to_chatFragment"
+            app:destination="@id/chat_fragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/chat_fragment"
         android:name="com.example.e_wastehubkenya.ui.theme.dashboard.ChatFragment"
         android:label="Chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="sellerId"
+            app:argType="string" />
+        <argument
+            android:name="listingId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart_fragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkoutFragment_to_purchaseSuccessfulFragment"
+            app:destination="@id/purchaseSuccessfulFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/purchaseSuccessfulFragment"
+        android:name="com.example.e_wastehubkenya.ui.theme.dashboard.PurchaseSuccessfulFragment"
+        android:label="Purchase Successful"
+        tools:layout="@layout/fragment_purchase_successful" />
 
 </navigation>
-
-

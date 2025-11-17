@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,9 +19,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <!-- LOGIN ACTIVITY is now the app's entry point -->
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="${applicationId}.firebaseinitprovider"
+            tools:node="remove" />
+
         <activity
-            android:name=".ui.theme.auth.LoginActivity"
+            android:name=".ui.theme.auth.SignupActivity"
             android:exported="true"
             android:theme="@style/Theme.EWastehubKenya">
             <intent-filter>
@@ -30,13 +34,11 @@
             </intent-filter>
         </activity>
 
-        <!-- SIGNUP ACTIVITY -->
         <activity
-            android:name=".ui.theme.auth.SignupActivity"
-            android:exported="true"
+            android:name=".ui.theme.auth.LoginActivity"
+            android:exported="false"
             android:theme="@style/Theme.EWastehubKenya" />
 
-        <!-- DASHBOARD ACTIVITY -->
         <activity
             android:name=".ui.theme.dashboard.DashboardActivity"
             android:exported="false"

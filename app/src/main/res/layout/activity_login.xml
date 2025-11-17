@@ -19,7 +19,6 @@
         android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
         android:textColor="#391B80"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,8 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="Email address"
-        app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
@@ -81,7 +78,6 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="#391B80"
         android:fontFamily="sans-serif-medium"
-        android:paddingVertical="12dp"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="#E9E9E9"
@@ -90,15 +86,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
+    <TextView
+        android:id="@+id/tvGoToSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="#391B80"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
