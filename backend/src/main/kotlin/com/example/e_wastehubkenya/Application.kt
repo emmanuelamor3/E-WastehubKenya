@@ -11,7 +11,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 
-// --- DATA CLASSES ---
+// DATA CLASSES 
 // These declarations ensure the backend knows what data to expect.
 
 @Serializable
@@ -73,8 +73,8 @@ data class CallbackItem(
     val Value: Any? = null
 )
 
-// --- IN-MEMORY DATABASES ---
-// In a real app, you'd use a proper database (like PostgreSQL, MongoDB, etc.)
+// IN-MEMORY DATABASES 
+// 
 
 val userDatabase = mutableMapOf<String, SignupRequest>()
 val listingsDatabase = mutableListOf<Listing>()
@@ -82,9 +82,8 @@ val listingsDatabase = mutableListOf<Listing>()
 val stolenSerialNumbers = setOf("SN123456", "SN654321", "79927398713")
 
 /**
- * Checks if the given number string is valid according to the Luhn algorithm.
- * The Luhn algorithm is used to validate a variety of identification numbers,
- * such as credit card numbers and IMEI numbers.
+ Checks if the given number string is valid according to the Luhn algorithm.
+ The Luhn algorithm is used to validate a variety of identification numbers, such as credit card numbers and IMEI numbers.
  */
 fun isValidLuhn(number: String): Boolean {
     // The number must be a digit-only string with a length greater than 0.
@@ -120,7 +119,7 @@ fun Application.module() {
     }
 
     routing {
-        // --- AUTHENTICATION ROUTES ---
+        // AUTHENTICATION ROUTES 
 
         post("/signup") {
             val signupRequest = call.receive<SignupRequest>()
@@ -144,7 +143,7 @@ fun Application.module() {
             }
         }
 
-        // --- E-WASTE AND SERIAL NUMBER ROUTES ---
+        //  E-WASTE AND SERIAL NUMBER ROUTES 
 
         post("/check-serial") {
             val request = call.receive<SerialCheckRequest>()
@@ -171,12 +170,11 @@ fun Application.module() {
             }
         }
 
-        // --- MPESA CALLBACK ---
+        //  MPESA CALLBACK 
         post("/mpesa-callback") {
             try {
                 val callback = call.receive<MpesaCallback>()
                 println("M-Pesa callback received: $callback")
-                // You can add further processing here, e.g., saving to a database
                 call.respond(MessageResponse("Callback received successfully."))
             } catch (e: Exception) {
                 println("Error receiving M-Pesa callback: ${e.message}")
